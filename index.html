@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Plan de réassort Huawei</title>
+    <style>
+      :root {
+        --bg: #f3efe7;
+        --paper: rgba(255, 251, 244, 0.92);
+        --line: #ded5c6;
+        --ink: #263022;
+        --muted: #6c7368;
+        --accent: #1c7b5a;
+        --accent-soft: #e3f1ea;
+        --warn: #9b4d00;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at top right, rgba(28, 123, 90, 0.10), transparent 25%),
+          linear-gradient(180deg, #f8f4ec 0%, var(--bg) 100%);
+        font: 15px/1.45 "Avenir Next", "Segoe UI", sans-serif;
+      }
+      .wrap {
+        max-width: 1450px;
+        margin: 0 auto;
+        padding: 28px 18px 44px;
+      }
+      .hero, .panel {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        box-shadow: 0 18px 60px rgba(60, 52, 31, 0.08);
+      }
+      .hero {
+        padding: 28px;
+        margin-bottom: 20px;
+      }
+      .kicker {
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: .08em;
+        font-weight: 800;
+        font-size: 12px;
+      }
+      h1 {
+        margin: 10px 0 10px;
+        font: 700 41px/1.02 Georgia, "Times New Roman", serif;
+      }
+      .summary {
+        color: var(--muted);
+        max-width: 1000px;
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 12px;
+        margin-top: 20px;
+      }
+      .stat {
+        padding: 16px 18px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: linear-gradient(180deg, #fffdf9, #f7f2ea);
+      }
+      .stat strong {
+        display: block;
+        margin-top: 6px;
+        font-size: 28px;
+      }
+      .method {
+        margin-top: 18px;
+        padding: 16px 18px;
+        border: 1px dashed #c8d8cd;
+        border-radius: 18px;
+        background: var(--accent-soft);
+        color: #385648;
+      }
+      .method code { font: 600 13px/1.2 ui-monospace, monospace; }
+      .panel-head {
+        padding: 18px 20px;
+        border-bottom: 1px solid var(--line);
+        background: linear-gradient(180deg, #eff8f4, #e6f1eb);
+        font-weight: 700;
+      }
+      .table-wrap {
+        overflow: auto;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 1350px;
+      }
+      th, td {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+        vertical-align: top;
+      }
+      th {
+        position: sticky;
+        top: 0;
+        background: #f4f8f3;
+        color: #556356;
+        text-transform: uppercase;
+        letter-spacing: .05em;
+        font-size: 12px;
+      }
+      tr:nth-child(even) td {
+        background: rgba(250, 247, 241, 0.7);
+      }
+      code {
+        font: 600 13px/1.2 ui-monospace, monospace;
+      }
+      .foot {
+        margin-top: 16px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .note {
+        margin-top: 16px;
+        color: var(--warn);
+      }
+      @media (max-width: 720px) {
+        .wrap { padding: 14px 10px 28px; }
+        .hero, .panel { border-radius: 18px; }
+        h1 { font-size: 31px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <section class="hero">
+        <div class="kicker">Réassort Huawei</div>
+        <h1>Plan recommandé sous budget 400 000 USD</h1>
+        <p class="summary">
+          Reco calculée uniquement sur les ventes Huawei observées et les prix produits.
+          La marge utilisée ici ignore totalement la livraison client:
+          <strong>vente plateforme HT - commission/frais plateforme - prix d’achat produit après transport</strong>.
+          Les prix <strong>USD avant transport</strong> viennent du calculateur Huawei live.
+          Le budget est traité comme un plafond, pas comme une obligation de dépense.
+        </p>
+        <div class="stats">
+          <div class="stat">Budget max<strong>$400,000</strong></div>
+          <div class="stat">Budget recommandé<strong>$269,050</strong></div>
+          <div class="stat">Budget non engagé<strong>$130,950</strong></div>
+          <div class="stat">Quantité à commander<strong>251</strong></div>
+          <div class="stat">Fenêtre d'analyse<strong>61 jours</strong></div>
+        </div>
+        <div class="method">
+          Méthode:
+          vitesse de vente + marge plateforme hors livraison + couverture de stock,
+          avec un biais fort en faveur des <code>onduleurs</code>.
+          La cible de couverture est fixée entre <code>120</code> et <code>180</code> jours selon le score du produit.
+          Si un produit a déjà plus de <code>180 jours</code> de couverture, il n'est pas recommandé au réassort.
+          Correction stock appliquée: <code>SUN2000-8K-MAP0 = 0</code> d'après ton retour.
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">Quantités recommandées</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Référence vente</th>
+                <th>Description source Huawei</th>
+                <th>Catégorie</th>
+                <th>Vendus</th>
+                <th>Vitesse/mois</th>
+                <th>Stock actuel</th>
+                <th>Couverture actuelle</th>
+                <th>Prix vente HT moyen</th>
+                <th>PA unitaire après transport</th>
+                <th>Marge nette / unité</th>
+                <th>Marge nette %</th>
+                <th>PA USD avant transport</th>
+                <th>Cible couverture</th>
+                <th>Qté recommandée</th>
+                <th>Budget recommandé</th>
+                <th>Couverture après achat</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+        <tr>
+          <td><code>BAT-LUNA2000-5-E0</code></td>
+          <td>Luna2000-5-E0 Battery module,5kwh</td>
+          <td>Batteries</td>
+          <td>78</td>
+          <td>38,36</td>
+          <td>80</td>
+          <td>62,56 j</td>
+          <td>1 462,18 €</td>
+          <td>1 094,98 €</td>
+          <td>325,66 €</td>
+          <td>22,27 %</td>
+          <td>$1,261</td>
+          <td>182 j</td>
+          <td><strong>153</strong></td>
+          <td><strong>$192,933</strong></td>
+          <td>182,22 j</td>
+        </tr>
+
+        <tr>
+          <td><code>SUN2000-8K-MAP0</code></td>
+          <td>SUN2000-8KTL-MAP0</td>
+          <td>Inverters</td>
+          <td>6</td>
+          <td>2,95</td>
+          <td>0</td>
+          <td>0 j</td>
+          <td>1 049,47 €</td>
+          <td>737,78 €</td>
+          <td>268,36 €</td>
+          <td>25,57 %</td>
+          <td>$844</td>
+          <td>174 j</td>
+          <td><strong>18</strong></td>
+          <td><strong>$15,192</strong></td>
+          <td>183 j</td>
+        </tr>
+
+        <tr>
+          <td><code>BAT-DC-LUNA2000-C0</code></td>
+          <td>Luna2000-5kw-c0 Power module,5kw (BMS)</td>
+          <td>Batteries</td>
+          <td>28</td>
+          <td>13,77</td>
+          <td>50</td>
+          <td>108,93 j</td>
+          <td>596,38 €</td>
+          <td>454,24 €</td>
+          <td>124,78 €</td>
+          <td>20,92 %</td>
+          <td>$513</td>
+          <td>151 j</td>
+          <td><strong>20</strong></td>
+          <td><strong>$10,260</strong></td>
+          <td>152,5 j</td>
+        </tr>
+
+        <tr>
+          <td><code>SUN2000-25K-MB0</code></td>
+          <td>SUN2000-25K-MB0</td>
+          <td>Inverters</td>
+          <td>5</td>
+          <td>2,46</td>
+          <td>7</td>
+          <td>85,4 j</td>
+          <td>1 977,60 €</td>
+          <td>1 433,34 €</td>
+          <td>472,75 €</td>
+          <td>23,91 %</td>
+          <td>$1,656</td>
+          <td>158 j</td>
+          <td><strong>6</strong></td>
+          <td><strong>$9,936</strong></td>
+          <td>158,6 j</td>
+        </tr>
+
+        <tr>
+          <td><code>SUN2000-6K-MAP0</code></td>
+          <td>SUN2000-6KTL-MAP0</td>
+          <td>Inverters</td>
+          <td>6</td>
+          <td>2,95</td>
+          <td>4</td>
+          <td>40,67 j</td>
+          <td>898,00 €</td>
+          <td>623,85 €</td>
+          <td>239,51 €</td>
+          <td>26,67 %</td>
+          <td>$711</td>
+          <td>170 j</td>
+          <td><strong>13</strong></td>
+          <td><strong>$9,243</strong></td>
+          <td>172,83 j</td>
+        </tr>
+
+        <tr>
+          <td><code>OND-30KTL-M3</code></td>
+          <td>SUN2000-30KTL-M3</td>
+          <td>Inverters</td>
+          <td>4</td>
+          <td>1,97</td>
+          <td>4</td>
+          <td>61 j</td>
+          <td>1 555,00 €</td>
+          <td>1 250,02 €</td>
+          <td>245,70 €</td>
+          <td>15,8 %</td>
+          <td>$1,442</td>
+          <td>152 j</td>
+          <td><strong>6</strong></td>
+          <td><strong>$8,652</strong></td>
+          <td>152,5 j</td>
+        </tr>
+
+        <tr>
+          <td><code>SUN2000-6KTL-L1</code></td>
+          <td>SUN2000-6KTL-L1</td>
+          <td>Inverters</td>
+          <td>6</td>
+          <td>2,95</td>
+          <td>0</td>
+          <td>0 j</td>
+          <td>603,33 €</td>
+          <td>418,27 €</td>
+          <td>155,55 €</td>
+          <td>25,78 %</td>
+          <td>$471</td>
+          <td>175 j</td>
+          <td><strong>18</strong></td>
+          <td><strong>$8,478</strong></td>
+          <td>183 j</td>
+        </tr>
+
+        <tr>
+          <td><code>SUN2000-12K-MAP0</code></td>
+          <td>SUN2000-12KTL-MAP0</td>
+          <td>Inverters</td>
+          <td>5</td>
+          <td>2,46</td>
+          <td>7</td>
+          <td>85,4 j</td>
+          <td>1 292,40 €</td>
+          <td>919,38 €</td>
+          <td>318,12 €</td>
+          <td>24,61 %</td>
+          <td>$1,056</td>
+          <td>159 j</td>
+          <td><strong>7</strong></td>
+          <td><strong>$7,392</strong></td>
+          <td>170,8 j</td>
+        </tr>
+
+        <tr>
+          <td><code>SUN2000-10K-LC0</code></td>
+          <td>SUN2000-10K-LC0</td>
+          <td>Inverters</td>
+          <td>4</td>
+          <td>1,97</td>
+          <td>6</td>
+          <td>91,5 j</td>
+          <td>1 022,75 €</td>
+          <td>609,29 €</td>
+          <td>377,67 €</td>
+          <td>36,93 %</td>
+          <td>$694</td>
+          <td>171 j</td>
+          <td><strong>6</strong></td>
+          <td><strong>$4,164</strong></td>
+          <td>183 j</td>
+        </tr>
+
+        <tr>
+          <td><code>SUN2000-5K-MAP0</code></td>
+          <td>SUN2000-5KTL-MAP0</td>
+          <td>Inverters</td>
+          <td>5</td>
+          <td>2,46</td>
+          <td>9</td>
+          <td>109,8 j</td>
+          <td>850,14 €</td>
+          <td>614,43 €</td>
+          <td>205,31 €</td>
+          <td>24,15 %</td>
+          <td>$700</td>
+          <td>154 j</td>
+          <td><strong>4</strong></td>
+          <td><strong>$2,800</strong></td>
+          <td>158,6 j</td>
+        </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel" style="margin-top:20px;">
+        <div class="panel-head">Références exclues</div>
+        <div style="padding:18px 20px;">
+          <ul><li><code>WLAN-FE</code> : Référence absente du calculateur Huawei live</li></ul>
+        </div>
+      </section>
+
+      <div class="note">
+        Lecture simple:
+        le plan recommande environ <strong>$269,050</strong> seulement,
+        car aller chercher les <strong>$400,000</strong> complets créerait un surstock trop lourd
+        au vu de la demande observée sur 61 jours.
+      </div>
+
+      <div class="foot">
+        Source ventes: .tmp-backup-before-luna-adjust-2026-03-30T02-56-28-154Z.json |
+        Source prix: <a href="https://yohand-byte.github.io/huawei-pricing-calculator/">https://yohand-byte.github.io/huawei-pricing-calculator/</a> |
+        Paramètres live détectés: <code>exchangeRate=0.8566</code>,
+        <code>freightQuoteEUR=4730.08</code>,
+        <code>customsClearanceEUR=2614</code> |
+        Généré le 6 avr. 2026, 13:40
+      </div>
+    </div>
+  </body>
+</html>
